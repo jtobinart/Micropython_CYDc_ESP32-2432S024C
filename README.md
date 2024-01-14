@@ -8,7 +8,8 @@ This library depends on:
 
 A copy of rdagger's ili9341 library is available in the _resources_ folder.
 
-## Instalations
+## Installation
+Follow MicroPython's [installation instructions](https://learn.adafruit.com/adafruit-clue) to get your CYDc board ready. Use your preferred MicroPython IDE (e.g. [Thonny](https://thonny.org/)) to transfer CYDc.py and ili9341.py to your CYDc board.
 
 ## Usage
 You can create a new main.py file and use:
