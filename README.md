@@ -3,8 +3,8 @@ This is a higher-level library to allow MicroPython users to easily control the 
 
 ## Dependencies
 This library depends on:
-* [MicroPython](https://micropython.org/download/ESP32_GENERIC/) Firmware: v1.22.1 (2024-01-05) .bin
-* [rdagger/micropython-ili9341](https://github.com/rdagger/micropython-ili9341/) Retrieved: 12/2/23
+* [MicroPython](https://micropython.org/download/ESP32_GENERIC/) - Firmware: v1.22.1 (2024-01-05) .bin
+* [rdagger/micropython-ili9341](https://github.com/rdagger/micropython-ili9341/) - Retrieved: 12/2/23
 
 A copy of rdagger's ili9341 library is available in the _resources_ folder.
 
