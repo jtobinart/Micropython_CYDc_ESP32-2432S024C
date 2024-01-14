@@ -1,1 +1,1 @@
-The numbered folders come from the factory supplied documentation. Folders 1-Demo, 7-Character&Picture_Molding_Tool, and 8-Burn operation have been omitted as they focus on Ardino. The factory supplied zip file contains all folders and documentation.
+The numbered folders come from the factory-supplied documentation. Folders 1-Demo, 7-Character&Picture_Molding_Tool, and 8-Burn operation have been omitted as they focus on Arduino. The factory-supplied zip file contains all the files and folders.
