@@ -1,5 +1,5 @@
 # MicroPython_CYDc_ESP32-2432S024C
-This is a higher-level library to allow MicroPython users to easily control the ESP32-2432S024C, more commonly known as the smaller Cheap Yellow Device (CYD) with Capacitive (c) Touch (CYDc) This device uses the TFT ili9341 driver chip and cst820 touch driver chip. Little documentation is available online about the cst820. Advance gesture recognition, pressure measurements, and interrupt pin on the cst820 are nonfunctioning. You can easily capture one and two-finger taps and long presses. Two-finger taps and presses work best when fingers are far apart.
+This is a higher-level library to allow MicroPython users to easily control the ESP32-2432S024C, more commonly known as the smaller Cheap Yellow Display (CYD) with Capacitive (c) Touch (CYDc) This device uses the TFT ili9341 driver chip and cst820 touch driver chip. Little documentation is available online about the cst820. Advance gesture recognition, pressure measurements, and interrupt pin on the cst820 are nonfunctioning. You can easily capture one and two-finger taps and long presses. Two-finger taps and presses work best when fingers are far apart.
 
 
 ## Dependencies
