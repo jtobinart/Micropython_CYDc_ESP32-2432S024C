@@ -1,4 +1,4 @@
-# CYDc Touchscreen Demo
+# CYDc Library
 # Tags: Micropython Smaller Cheap Yellow Device Capacitive Touch cst820 DIYmall ESP32-2432S024C 
 # Last Updated: Jan. 14, 2024
 # Author(s): James Tobin
@@ -9,7 +9,7 @@
 #   MIT License
 ######################################################
 '''
-Copyright (c) 2023 James Tobin
+Copyright (c) 2024 James Tobin
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software
 without restriction, including without limitation the rights to use, copy, modify,
@@ -30,10 +30,10 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 #   Library Information
 ######################################################
 '''
-esp32_CYD.py:
+cydc.py:
 
 v1
-    This is a higher-level library to control DIYmall's ESP32-2432S024C, also known as the smaller Cheap Yellow Device w/ Copacitive touch (CYDc).
+    This is a higher-level library to control DIYmall's ESP32-2432S024C, a smaller version of the Cheap Yellow Display but w/capacitive touch (CYDc).
     Touch pin interrupts and gesture data unavailable.
     
     TO DO:
