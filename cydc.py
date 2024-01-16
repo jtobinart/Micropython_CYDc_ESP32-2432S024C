@@ -94,7 +94,7 @@ from math import fabs
 import struct
 
 
-class CYDC(object):
+class CYD(object):
     BLACK  = color565(  0,   0,   0)
     RED    = color565(255,   0,   0)
     GREEN  = color565(  0, 255,   0)
