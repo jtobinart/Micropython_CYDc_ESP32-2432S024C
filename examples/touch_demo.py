@@ -5,13 +5,13 @@
 # License: MIT
 # https://github.com/jtobinart/Micropython_CYDc_ESP32-2432S024C
 
-from cydc import CYDC
+from cydc import CYD
 import time
 
 # Creat an instance of CYDC
-cyd = CYDC()
+cyd = CYD()
 
-# Draw "TOUCH ME" at top of display.
+# Draw "TOUCH ME" at the top of the display.
 cyd.display.draw_text8x8(cyd.display.width // 2 - 32, 10, "TOUCH ME", cyd.WHITE, background=cyd.RED)
 
 # List of color choices
@@ -32,9 +32,9 @@ while True:
     
     if fingers is 2:
         if longpress_flag == True:
-            # Two Finger Long Press Action - Works best When fingers are far apart.
+            # Two-Finger Long Press Action - Works best When fingers are far apart.
             break
-        # Two Finger Tap Action - Works best when fingers are far apart
+        # Two-Finger Tap Action - Works best when fingers are far apart
         longpress_flag = True
         c=(c+1)%len(colors)
         time.sleep(0.1)
@@ -43,7 +43,7 @@ while True:
     if fingers is 1:
         # One Finger Tap Action
         longpress_flag = False
-        # Prevent circles from appearing off screen.
+        # Prevent circles from appearing off-screen.
         y = min(max(((cyd.display.height - 1) - raw_y), (r+1)),(cyd.display.height-(r+1)))
         x = min(max(((cyd.display.width - 1) - raw_x), (r+1)),(cyd.display.width-(r+1)))
         # Create circle
