@@ -1,6 +1,6 @@
 # CYDc Library
 # Tags: Micropython Smaller Cheap Yellow Device Capacitive Touch cst820 DIYmall ESP32-2432S024C 
-# Last Updated: Jan. 14, 2024
+# Last Updated: Jan. 15, 2024
 # Author(s): James Tobin
 # License: MIT
 # https://github.com/jtobinart/Micropython_CYDc_ESP32-2432S024C
@@ -323,7 +323,3 @@ class CYD(object):
         self.tft_bl.value(0)
         self.display.cleanup()
         print("========== Goodbye ==========")
-
-
-
-
