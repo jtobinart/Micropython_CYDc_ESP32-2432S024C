@@ -105,7 +105,7 @@ class CYD(object):
     
     def __init__(self, rgb_pmw=False, speaker_gain=512, sd_enabled = False):
         '''
-        Initialize CDYc
+        Initialize CDY
 
         Args:
             rgb_pmw (Default = False): Sets RGB LED to static mode. (on/off), if false
