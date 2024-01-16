@@ -28,7 +28,7 @@ while True:
     if fingers is 0:
         # No Fingers Detected
         longpress_flag = False
-        pass
+        continue
     
     if fingers is 2:
         if longpress_flag == True:
@@ -38,7 +38,7 @@ while True:
         longpress_flag = True
         c=(c+1)%len(colors)
         time.sleep(0.1)
-        pass
+        continue
     
     if fingers is 1:
         # One Finger Tap Action
