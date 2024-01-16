@@ -33,12 +33,12 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 cydc.py:
 
 v1
-    This is a higher-level library to control DIYmall's ESP32-2432S024C, a smaller version of the Cheap Yellow Display but w/capacitive touch (CYDc).
+    This higher-level library controls DIYmall's ESP32-2432S024C, a smaller version of the Cheap Yellow Display but with capacitive touch (CYDc).
     Touch pin interrupts and gesture data unavailable.
     
     TO DO:
-        - Implement DAC pin 26 for speaker instead of using PWM
-        - SD card creates a critical error when using keyboard interupt. Leave sd_enabled = False, unless using it.
+        - Implement DAC pin 26 for the speaker instead of using PWM
+        - SD card creates a critical error when using keyboard interrupt. Leave sd_enabled = False, unless using it.
         - Implement easy Bluetooth functions
         - Implement easy Wifi functions
 '''
@@ -77,7 +77,7 @@ IO Pins
     32   Digital   Touch CST820                     - CTP_SCL
     33   Digital   Touch CST820                     - CTP_SDA
     34   Analog    LDR Light Sensor                 - !!!Input ONLY!!!
-    35   Digital   P3 Connector                     - !!!Input ONLY w/ NO pull ups!!!
+    35   Digital   P3 Connector                     - !!!Input ONLY w/ NO pull-ups!!!
     36   Digital   Not Connected
     39   Digital   Not Connected
 '''
@@ -103,28 +103,39 @@ class CYDC(object):
     PURPLE = color565(255,   0, 255)
     WHITE  = color565(255, 255, 255)
     
-    def __init__(self, rgb_pmw=False, speaker_gain=512, sd_enabled = False, touch_handler=None):
-        
-        #Display
+    def __init__(self, rgb_pmw=False, speaker_gain=512, sd_enabled = False):
+        '''
+        Initialize CDYc
+
+        Args:
+            rgb_pmw (Default = False): Sets RGB LED to static mode. (on/off), if false
+                                       Sets RGB LED to dynamic mode. (16.5+ million color combination), if true
+                                       Warning: RGB LED never completely turns off in dynamic mode.
+            
+            speaker_gain (Default = 512): Sets speaker's volume. The full gain range is 0 - 1023.
+
+            sd_enabled (Default = False): Initializes SD Card reader, user still needs to run mount_sd() to access SD card.
+        '''
+        # Display
         spi1 = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(13))
         self.display = Display(spi1, dc=Pin(2), cs=Pin(15), rst=Pin(0))
         
-        #Backlight
+        # Backlight
         self.tft_bl = Pin(27, Pin.OUT)
         self.tft_bl.value(1) #Turn on backlight 
         
-        #Touch
+        # Touch
         self._touch = SoftI2C(scl=Pin(32), sda=Pin(33), freq=400000)
         #self._touch = CST820(scl=Pin(32), sda=Pin(33), freq=400000, int_pin=21 int_handler=touch_handler)
         self._touch.writeto_mem(21, 0xfe, b'\xff') # tell it not to sleep
 
-        #Boot Button
+        # Boot Button
         self._button_boot = Pin(0, Pin.IN)
         
-        #LDR: Light Sensor (Measures Darkness)
+        # LDR: Light Sensor (Measures Darkness)
         self._ldr = ADC(34)
         
-        #RGB LED
+        # RGB LED
         self._rgb_pmw = rgb_pmw
         if self._rgb_pmw == False:
             self.RGBr = Pin(4, Pin.OUT, value=1)     # Red
@@ -136,12 +147,12 @@ class CYDC(object):
             self.RGBb = PWM(Pin(17), freq=200, duty=1023)    # Blue
             print("RGB PMW Ready")
         
-        #Speaker
+        # Speaker
         self._speaker_pin = Pin(26, Pin.OUT)
         self.speaker_gain = int(min(max(speaker_gain, 0),1023))     # Min 0, Max 1023
         self.speaker_pwm = PWM(self._speaker_pin, freq=440, duty=0)
             
-        #SD Card
+        # SD Card
         self._sd_ready = False
         self._sd_mounted = False
         if sd_enabled == True:
@@ -184,9 +195,14 @@ class CYDC(object):
         
         Args:
             color: Array containing three int values (r,g,b).
-                    r (0-255): Red brightness.
-                    g (0-255): Green brightness.
-                    b (0-255): Blue brightness.
+                    if rgb_pmw == False, then static mode is activated.
+                        r (0 or 1): Red brightness.
+                        g (0 or 1): Green brightness.
+                        b (0 or 1): Blue brightness.
+                    if rgb_pmw == True, then dynamic mode is activated.
+                        r (0-255): Red brightness.
+                        g (0-255): Green brightness.
+                        b (0-255): Blue brightness.
         '''
         r, g, b = color
         if self._rgb_pmw == False:
@@ -199,6 +215,9 @@ class CYDC(object):
             self.RGBb.duty(int(min(max(self._remap(b,0,255,1023,0), 0),1023)))
     
     def _remap(self, value, in_min, in_max, out_min, out_max):
+        '''
+        Internal function for remapping values from one scale to a second.
+        '''
         in_span = in_max - in_min
         out_span = out_max - out_min
         scale = out_span / in_span
@@ -219,6 +238,9 @@ class CYDC(object):
     #   Button
     ###################################################### 
     def button_boot(self):
+        '''
+        Gets the Boot button's current state
+        '''
         return self._button_boot.value
     
     ######################################################
@@ -268,6 +290,9 @@ class CYDC(object):
             print("Failed to mount SD card")
     
     def unmount_sd(self):
+        '''
+        Unmounts SD Card
+        '''
         try:
             if self._sd_mounted == True:
                 os.unmount('/sd')  # mount
@@ -281,7 +306,7 @@ class CYDC(object):
     ######################################################    
     def shutdown(self):
         '''
-        Resets CYD and properly shutsdown.
+        Resets CYD and properly shuts down.
         '''
         self.display.fill_rectangle(0, 0, self.display.width-1, self.display.height-1, self.BLACK)
         self.display.draw_rectangle(2, 2, self.display.width-5, self.display.height-5, self.RED)
