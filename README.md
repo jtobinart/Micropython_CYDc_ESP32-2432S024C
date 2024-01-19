@@ -19,8 +19,8 @@ Follow MicroPython's [installation instructions](https://learn.adafruit.com/adaf
 ## Usage
 You can create a new main.py file and use:
 ```python
-from cydc import CYDC
-cyd = CYDC()
+from cydc import CYD
+cyd = CYD()
 ```
 to access the CYDc or you can use one of the example programs provided in the repository. You can use the touch demo to test one and two-finger taps and two-finger long presses.
 
