@@ -1,12 +1,12 @@
 # CYDc Library
-# Tags: Micropython Cheap Yellow Device DIYmall ESP32-2432S028R
+# Tags: Micropython Smaller Cheap Yellow Device Capacitive Touch cst820 DIYmall ESP32-2432S024C 
 # Last Updated: Jan. 15, 2024
 # Author(s): James Tobin
 # License: MIT
-# https://github.com/jtobinart/MicroPython_CYD_ESP32-2432S028R
+# https://github.com/jtobinart/Micropython_CYDc_ESP32-2432S024C
 
-import time
 from cydc import CYD
+import time
 
 cyd = CYD()
 

@@ -12,7 +12,7 @@ import time
 cyd = CYD()
 
 # Draw "TOUCH ME" at the top of the display.
-cyd.display.draw_text8x8(cyd.display.width // 2 - 32, 10, "TOUCH ME", cyd.WHITE, background=cyd.RED)
+cyd.display.draw_text8x8(cyd.display.width // 2 - 32, 10, "TOUCH ME", cyd.WHITE)
 
 # List of color choices
 colors = [cyd.RED, cyd.GREEN, cyd.BLUE]
@@ -23,7 +23,7 @@ r = 4    # Radius of cirlces
 while True:
     time.sleep(0.05)
     fingers, raw_x, raw_y = cyd.touches()
-    #print("Touches:", i, x, y)
+    print("Touches:",fingers, raw_x, raw_y)
 
     if fingers is 0:
         # No Fingers Detected
